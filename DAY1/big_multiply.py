@@ -22,9 +22,10 @@ def big_multiply(num1: str, num2: str):
 
         addables.append(val)
 
+    print(addables)
 
-    # addition phase
-    for i in addables:
+    # # addition phase
+    # for i in addables:
 
 
 
