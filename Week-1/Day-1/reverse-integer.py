@@ -1,3 +1,5 @@
+import math
+
 class Solution:
     def reverse(self, x: int) -> int:
         if x < 10 and x > -10: return x
