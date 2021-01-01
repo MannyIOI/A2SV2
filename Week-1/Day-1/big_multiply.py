@@ -42,4 +42,29 @@ def big_multiply(num1: str, num2: str):
     
     return val
 
-print(big_multiply('87', '92'))
+def karatsuba(num1: str, num2: str):
+    positive = True
+
+    if num1[0] == '-':
+        num1 = num1[1: len(num1)]
+        positive = not positive
+
+    if num2[0] == '-':
+        num2 = num2[1: len(num2)]
+        positive = not positive
+    
+    if len(num1) < 2 or len(num2) < 2:
+        return str(int(num1) * int(num2))
+
+    mid = min(len(num1) // 2, len(num2) // 2)
+
+    high1, low1 = num1[:mid], num1[mid:]
+    high2, low2 = num2[:mid], num2[mid:]
+
+    z0 = int(karatsuba(low1, low2))
+    z1 = int(karatsuba(str(int(low1) + int(high1)), str(int(low2) + int(high2))))
+    z2 = int(karatsuba(high1, high2))
+
+    return z2 * (10 ** (2 * mid)) + ((z1 - z2 - z0) * (10 ** mid)) + z0
+# print(big_multiply('87', '92'))
+print(karatsuba('87', '92'))
