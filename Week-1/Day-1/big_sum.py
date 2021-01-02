@@ -14,12 +14,27 @@ def bigSum(num1: str, num2: str):
         num1 = num1[1: len(num1)]
         both_positive = not both_positive
 
+        if num2[0] != '':
+            print(num1, num2)
+            if len(num2) > len(num1):
+                return bigSum(''.join(num2), ''.join(num1))
+
+            for i in range(len(num1)):
+                if num1[i] < num2[i]:
+                    return '-' + bigSum(''.join(num2), ''.join(num1))
+
     if num2[0] == '-':
         num2 = num2[1: len(num2)]
         both_positive = not both_positive
     else:
         if not both_positive:
-            return bigSum(''.join(num1), ''.join(num2))
+            # if len(num2) > len(num1):
+            #     return bigSum(''.join(num2), ''.join(num1))
+
+            # if len(num2) == len(num1):
+            #     return 
+
+            return bigSum(''.join(num2), ''.join(num1))
 
     # go reverse
     for i in range(len(num1) - 1, -1, -1):
@@ -47,5 +62,9 @@ def bigSum(num1: str, num2: str):
 # print(bigSum('1', '9')) # 10
 # print(bigSum('15', '25')) # 40
 # print(bigSum('92', '-87')) # 5
-# TODO
-# print(bigSum('-97','80')) # 5
+# TODO: flip to 97 - 80 then negate
+print(bigSum('-97','80')) # -17
+
+# print(bigSum('80', '-97')) # -17
+
+# print('80', '-97')
